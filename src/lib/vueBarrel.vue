@@ -30,19 +30,19 @@ const dealWidth = (items, width, maxWidth) => {
 
         }
 
-
     })
 
 }
 
 export default {
-    name: 'vueBarrel',
+    name: 'AxBarrel',
     data() {
 
         return {
             barrelWidth: 0,
             brandBox: null,
             margin: 0,
+            shouldUpdate: false,
         }
 
     },
@@ -51,10 +51,16 @@ export default {
             type: String,
             default: 'vue-barrel'
         },
+        list: {
+            type: Array,
+            default: []
+        }
     },
-    methods:{
+    methods: {
 
-        setWidth(){
+        setWidth() {
+            this.shouldUpdate = false;
+
             let ele = '.' + this.ele.replace('.', '');
 
             let items = this.barrelBox.querySelectorAll(ele);
@@ -76,7 +82,7 @@ export default {
             let barrelWidth = this.barrelWidth;
 
             Array.prototype.forEach.call(items, (item) => {
-                
+
                 paddingRight = 0;
 
                 paddingLeft = 0;
@@ -87,7 +93,7 @@ export default {
 
                 let boxSizing = window.getComputedStyle(item, "").getPropertyValue('box-sizing');
 
-                if( boxSizing !== 'border-box' ){
+                if (boxSizing !== 'border-box') {
 
                     paddingRight = parseInt(window.getComputedStyle(item, "").getPropertyValue('padding-right'));
 
@@ -107,7 +113,7 @@ export default {
 
                     rowList = [item];
 
-                    rowWidth = item.offsetWidth + marginLeft + marginRight + 1;
+                    rowWidth = widths;
 
                 } else {
                     rowWidth = tempWidth;
@@ -118,22 +124,27 @@ export default {
 
             })
         }
-        
+
+    },
+    watch:{
+
+        list(newer, older){
+
+            this.shouldUpdate = true;
+
+        }
     },
     updated() {
 
-        this.setWidth();
+        if( this.shouldUpdate ){
 
-    },
-    mounted() {
+            this.barrelBox = this.$refs.barrel;
 
-        this.barrelBox = this.$refs.barrel;
+            this.barrelWidth = this.barrelBox.offsetWidth;
 
-        this.barrelWidth = this.barrelBox.offsetWidth;
+            this.setWidth();
 
-        this.setWidth()
-
+        }
     }
-
 }
 </script>

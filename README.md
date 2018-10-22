@@ -16,7 +16,7 @@ Vue.use(VueBarrel)
 ```
 在组件中使用
 ```$xslt
-<vue-barrel class="main" ele="vue-barrel">
+<vue-barrel :list="brands" class="main" ele="vue-barrel">
           
     <div v-for="item in brands" :key="item.brand" class="vue-barrel">
         {{item.brand}}
