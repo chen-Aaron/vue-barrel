@@ -1,28 +1,37 @@
-# vue-flag-list
+# vue-barrel
 
-> List of global area codes
+> Vue Barrel Layout
 
 ## 使用组件
 安装npm包
 ```$xslt
-npm install vue-flag-list --save
+npm install vue-barrel --save
 ```
-引用vue-flag-list插件
+引用vue-barrel插件
 ```$xslt
-import VueFlagList from 'vue-flag-list'
-import 'vue-flag-list/dist/vue-flag-list.min.css'
+import VueBarrel from 'vue-barrel';
 
-Vue.use(VueFlagList)
+Vue.use(VueBarrel)
+
 ```
 在组件中使用
 ```$xslt
-<flagCode height="30" width="120" @getCode="getCode"></flagCode>
+<vue-barrel class="main" ele="vue-barrel">
+          
+    <div v-for="item in brands" :key="item.brand" class="vue-barrel">
+        {{item.brand}}
+    </div>
 
-methos: {
-    getCode(code) {
-        console.log(code)
+</vue-barrel>
+
+data () {
+    return {
+      brands: [{
+            "brand": "朋客"
+        },
+        {
+            "brand": "三的"
+        }];
     }
 }
 ```
-
-For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).

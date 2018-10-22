@@ -95,9 +95,9 @@ export default {
 
                 }
 
-                widths = item.offsetWidth + marginLeft + marginRight;
+                widths = item.offsetWidth + marginLeft + marginRight + 1;
 
-                item.realWidth = item.offsetWidth - paddingLeft - paddingRight;
+                item.realWidth = item.offsetWidth - paddingLeft - paddingRight + 1;
 
                 let tempWidth = rowWidth + widths;
 
@@ -107,7 +107,7 @@ export default {
 
                     rowList = [item];
 
-                    rowWidth = item.offsetWidth + marginLeft + marginRight;
+                    rowWidth = item.offsetWidth + marginLeft + marginRight + 1;
 
                 } else {
                     rowWidth = tempWidth;
@@ -128,8 +128,6 @@ export default {
     mounted() {
 
         this.barrelBox = this.$refs.barrel;
-
-        debugger
 
         this.barrelWidth = this.barrelBox.offsetWidth;
 
