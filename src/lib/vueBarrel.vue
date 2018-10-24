@@ -35,7 +35,7 @@ const dealWidth = (items, width, maxWidth) => {
 }
 
 export default {
-    name: 'AxBarrel',
+    name: 'vueBarrel',
     data() {
 
         return {
